@@ -21,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Column(
         children: [
           SwitchListTile(
-            title: const Text("Light mode"),
+            title: toggle ? const Text("Night mode") : const Text("Light mode"),
             value: toggle,
             onChanged: (value) {
               toggle = value;
