@@ -5,14 +5,17 @@ import 'package:online_shop/viewmodels/product_viewmodel.dart';
 import 'package:online_shop/views/widgets/product_widget.dart';
 
 class HomeWidget extends StatefulWidget {
+  String? query;
   ProductViewmodel productViewmodel;
   Function(Product) onFavoriteTapped;
   Function(Product) onCartTapped;
-  HomeWidget(
-      {required this.onCartTapped,
-      required this.onFavoriteTapped,
-      required this.productViewmodel,
-      super.key});
+  HomeWidget({
+    this.query,
+    required this.onCartTapped,
+    required this.onFavoriteTapped,
+    required this.productViewmodel,
+    super.key,
+  });
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
@@ -42,9 +45,19 @@ class _HomeWidgetState extends State<HomeWidget> {
           );
         }
 
-        final data = snapshot.data;
+        final data = widget.query == null || widget.query!.isEmpty
+            ? snapshot.data
+            : snapshot.data!.where(
+                (element) {
+                  return element.title
+                      .toLowerCase()
+                      .contains(widget.query!.toLowerCase());
+                },
+              ).toList();
         return data == null || data.isEmpty
-            ? const CircularProgressIndicator()
+            ? const Center(
+                child: Text("Nothing found"),
+              )
             : GridView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: data.length,

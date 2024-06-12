@@ -1,8 +1,8 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:online_shop/views/screens/home_page.dart';
-import 'package:online_shop/views/screens/splash_page.dart';
 
-void main(List<String> args) {
+void main() {
   runApp(const MainRunner());
 }
 
@@ -11,9 +11,28 @@ class MainRunner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return AdaptiveTheme(
+      light: ThemeData.light(useMaterial3: true).copyWith(
+        appBarTheme: const AppBarTheme(
+          color: Colors.amber,
+          foregroundColor: Colors.blue,
+        ),
+      ),
+      dark: ThemeData.dark(useMaterial3: true).copyWith(
+        appBarTheme: const AppBarTheme(
+          color: Colors.amber,
+          foregroundColor: Colors.blue,
+        ),
+      ),
+      initial: AdaptiveThemeMode.system,
+      builder: (theme, darkTheme) {
+        return MaterialApp(
+          theme: theme,
+          darkTheme: darkTheme,
+          debugShowCheckedModeBanner: false,
+          home: const HomePage(),
+        );
+      },
     );
   }
 }

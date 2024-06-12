@@ -73,8 +73,9 @@ class _SavedPageWidgetState extends State<SavedPageWidget> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProductDetailPage(
-                              product: product,
-                              onFavoriteTapped: widget.onFavoriteTapped),
+                            product: product,
+                            onFavoriteTapped: widget.onFavoriteTapped,
+                          ),
                         ),
                       );
                     },

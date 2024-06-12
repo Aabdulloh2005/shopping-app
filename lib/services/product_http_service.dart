@@ -17,7 +17,6 @@ class ProductHttpService {
     List<Product> loadedProducts = [];
     data.forEach((key, val) {
       val['id'] = key;
-      print(key);
       loadedProducts.add(Product.fromJson(val));
     });
 

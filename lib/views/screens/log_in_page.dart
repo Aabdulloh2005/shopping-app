@@ -1,10 +1,8 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:online_shop/services/auth_http_services.dart';
 import 'package:online_shop/views/screens/home_page.dart';
-import 'package:online_shop/views/screens/log_in_page.dart';
 import 'package:online_shop/views/screens/register_page.dart';
 
 class LogInPage extends StatefulWidget {
