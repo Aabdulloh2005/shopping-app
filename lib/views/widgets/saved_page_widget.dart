@@ -4,21 +4,21 @@ import 'package:online_shop/models/product.dart';
 import 'package:online_shop/viewmodels/product_viewmodel.dart';
 import 'package:online_shop/views/widgets/product_widget.dart';
 
-class HomeWidget extends StatefulWidget {
+class SavedPageWidget extends StatefulWidget {
   ProductViewmodel productViewmodel;
   Function(Product) onFavoriteTapped;
   Function(Product) onCartTapped;
-  HomeWidget(
+  SavedPageWidget(
       {required this.onCartTapped,
       required this.onFavoriteTapped,
       required this.productViewmodel,
       super.key});
 
   @override
-  State<HomeWidget> createState() => _HomeWidgetState();
+  State<SavedPageWidget> createState() => _SavedPageWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _SavedPageWidgetState extends State<SavedPageWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -42,9 +42,21 @@ class _HomeWidgetState extends State<HomeWidget> {
           );
         }
 
-        final data = snapshot.data;
+        final response = snapshot.data;
+        List<Product> data = [];
+        if (response != null) {
+          print(response);
+          for (var i in response) {
+            if (i.isFavorite) {
+              data.add(i);
+            }
+          }
+        }
+
         return data == null || data.isEmpty
-            ? const CircularProgressIndicator()
+            ? const Center(
+                child: Text("Saved is empty"),
+              )
             : GridView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: data.length,

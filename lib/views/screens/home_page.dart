@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:online_shop/models/product.dart';
 import 'package:online_shop/viewmodels/product_viewmodel.dart';
-import 'package:online_shop/services/product_http_service.dart';
+import 'package:online_shop/views/widgets/card_page_widget.dart';
 import 'package:online_shop/views/widgets/home_widget.dart';
-import 'package:online_shop/views/widgets/product_widget.dart';
+import 'package:online_shop/views/widgets/saved_page_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,6 +25,17 @@ class _HomePageState extends State<HomePage> {
     });
     await productViewmodel.updateProduct(product);
   }
+
+  void onDeleteTapped(int index) async {
+    await productViewmodel.onDeleteTapped(index);
+    setState(() {});
+  }
+
+  void onCartTapped(Product product) async {
+    await productViewmodel.addToCard(product);
+  }
+
+
 
   void onAddTapped() async {
     final data = await showDialog(
@@ -138,35 +149,51 @@ class _HomePageState extends State<HomePage> {
       ),
       body: [
         HomeWidget(
+            onCartTapped: onCartTapped,
             onFavoriteTapped: onFavoriteTapped,
             productViewmodel: productViewmodel),
-        Text("cart"),
-        Text("profile"),
+        CardPageWidget(
+            onDeleteTapped: onDeleteTapped,
+            onFavoriteTapped: onFavoriteTapped,
+            productViewmodel: productViewmodel),
+        SavedPageWidget(
+          onCartTapped: onCartTapped,
+          onFavoriteTapped: onFavoriteTapped,
+          productViewmodel: productViewmodel,
+        ),
+        const Text("profile"),
       ][pageIndex],
       bottomNavigationBar: BottomNavigationBar(
-          onTap: (value) {
-            pageIndex = value;
-            setState(() {});
-          },
-          currentIndex: pageIndex,
-          fixedColor: Colors.amber,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                label: "home"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  CupertinoIcons.cart,
-                ),
-                label: "Cart"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
-                ),
-                label: "Profile")
-          ]),
+        unselectedItemColor: Colors.amber,
+        selectedItemColor: Colors.amber,
+        onTap: (value) {
+          pageIndex = value;
+          setState(() {});
+        },
+        currentIndex: pageIndex,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              label: "home"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.cart,
+              ),
+              label: "Cart"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.heart,
+              ),
+              label: "Saved"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+              ),
+              label: "Profile"),
+        ],
+      ),
       floatingActionButton: pageIndex == 0
           ? FloatingActionButton(
               backgroundColor: Colors.amber,

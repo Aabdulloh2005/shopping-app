@@ -13,6 +13,7 @@ class ProductViewmodel {
 
   Future<void> updateProduct(Product product) async {
     await productHttpService.updateProduct(product);
+
   }
 
   Future<void> addProduct(
@@ -23,4 +24,30 @@ class ProductViewmodel {
   ) async {
     await productHttpService.addProduct(title, imageUrl, price, amount);
   }
+
+  List<Product> _cartList = [];
+
+  Future<List<Product>> get cartList async {
+    // _cartList = await productHttpService.getProducts();
+
+    return _cartList;
+  }
+
+  Future<void> onDeleteTapped(int index) async {
+    _cartList.removeAt(index);
+  }
+
+  Future<void> addToCard(Product product) async {
+    _cartList.add(product);
+  }
+
+  List<Product> _savedList = [];
+
+  Future<List<Product>> get savedList async {
+    // _savedList = await productHttpService.getProducts();
+
+    return _savedList;
+  }
+
+
 }

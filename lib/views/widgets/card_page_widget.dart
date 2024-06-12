@@ -4,25 +4,25 @@ import 'package:online_shop/models/product.dart';
 import 'package:online_shop/viewmodels/product_viewmodel.dart';
 import 'package:online_shop/views/widgets/product_widget.dart';
 
-class HomeWidget extends StatefulWidget {
+class CardPageWidget extends StatefulWidget {
   ProductViewmodel productViewmodel;
   Function(Product) onFavoriteTapped;
-  Function(Product) onCartTapped;
-  HomeWidget(
-      {required this.onCartTapped,
+  Function(int) onDeleteTapped;
+  CardPageWidget(
+      {required this.onDeleteTapped,
       required this.onFavoriteTapped,
       required this.productViewmodel,
       super.key});
 
   @override
-  State<HomeWidget> createState() => _HomeWidgetState();
+  State<CardPageWidget> createState() => _CardPageWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _CardPageWidgetState extends State<CardPageWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: widget.productViewmodel.list,
+      future: widget.productViewmodel.cartList,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -44,7 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
         final data = snapshot.data;
         return data == null || data.isEmpty
-            ? const CircularProgressIndicator()
+            ? Center(child: const Text("Cart is empty"))
             : GridView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: data.length,
@@ -109,11 +109,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   "${product.price}\$",
                                 ),
                                 IconButton(
-                                    onPressed: () {
-                                      widget.onCartTapped(product);
-                                    },
-                                    icon: const Icon(
-                                        CupertinoIcons.shopping_cart))
+                                  onPressed: () {
+                                    widget.onDeleteTapped(index);
+                                  },
+                                  icon: const Icon(CupertinoIcons.delete),
+                                ),
                               ],
                             ),
                           ),
