@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:online_shop/models/product.dart';
 import 'package:online_shop/viewmodels/product_viewmodel.dart';
 import 'package:online_shop/views/widgets/product_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class CardPageWidget extends StatefulWidget {
   ProductViewmodel productViewmodel;
@@ -44,7 +45,7 @@ class _CardPageWidgetState extends State<CardPageWidget> {
 
         final data = snapshot.data;
         return data == null || data.isEmpty
-            ? Center(child: const Text("Cart is empty"))
+            ? Center(child: Text(AppLocalizations.of(context)!.cartempty))
             : GridView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: data.length,

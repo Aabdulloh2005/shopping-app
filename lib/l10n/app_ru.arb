@@ -1,0 +1,16 @@
+{
+    "helloWorld": "Здравствуй, мир!",
+    "apple": "Яблоко",
+    "hello": "Здравствуй {userName}",
+    "nApples": "{count, plural, =0{нет яблок} = 1{1 яблоко} other {{count} яблок}}",
+    "appHome": "Главная",
+    "appCart": "Корзина",
+    "appSaved": "Сохранено",
+    "appProfile": "Профиль",
+    "settings": "Настройки",
+    "nightMode": "Ночной режим",
+    "lightMode": "Светлый режим",
+    "savedempty": "Сохраненное пусто",
+    "cartempty": "Корзина пуста",
+    "language": "Выбрать язык"
+}

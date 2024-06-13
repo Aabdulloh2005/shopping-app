@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:online_shop/models/product.dart';
 import 'package:online_shop/viewmodels/product_viewmodel.dart';
 import 'package:online_shop/views/widgets/product_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class SavedPageWidget extends StatefulWidget {
-  ProductViewmodel productViewmodel;
-  Function(Product) onFavoriteTapped;
-  Function(Product) onCartTapped;
-  SavedPageWidget(
+  final ProductViewmodel productViewmodel;
+  final Function(Product) onFavoriteTapped;
+  final Function(Product) onCartTapped;
+  const SavedPageWidget(
       {required this.onCartTapped,
       required this.onFavoriteTapped,
       required this.productViewmodel,
@@ -45,7 +46,6 @@ class _SavedPageWidgetState extends State<SavedPageWidget> {
         final response = snapshot.data;
         List<Product> data = [];
         if (response != null) {
-          print(response);
           for (var i in response) {
             if (i.isFavorite) {
               data.add(i);
@@ -53,9 +53,9 @@ class _SavedPageWidgetState extends State<SavedPageWidget> {
           }
         }
 
-        return data == null || data.isEmpty
-            ? const Center(
-                child: Text("Saved is empty"),
+        return data.isEmpty
+            ? Center(
+                child: Text(AppLocalizations.of(context)!.savedempty),
               )
             : GridView.builder(
                 padding: const EdgeInsets.all(8),

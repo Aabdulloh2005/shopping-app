@@ -1,0 +1,32 @@
+{
+    "helloWorld": "Hello World!",
+    "apple": "Apple",
+    "hello": "Hello {userName}",
+    "@hello": {
+        "placeholders": {
+            "userName": {
+                "type": "String",
+                "example": "Bob"
+            }
+        }
+    },
+    "nApples": "{count, plural, =0{no Apples} = 1{1 apple} other {{count} apples}}",
+    "@nApples": {
+        "placeholders": {
+            "count": {
+                "type": "num",
+                "format": "compact"
+            }
+        }
+    },
+    "appHome": "Home",
+    "appCart": "Cart",
+    "appSaved": "Saved",
+    "appProfile": "Profile",
+    "settings": "Settings",
+    "nightMode": "Night mode",
+    "lightMode": "Light mode",
+    "savedempty": "Saved is empty",
+    "cartempty": "Cart is empty",
+    "language": "Choose Language"
+}

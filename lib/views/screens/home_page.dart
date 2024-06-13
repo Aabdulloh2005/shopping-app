@@ -7,6 +7,7 @@ import 'package:online_shop/views/widgets/custom_drawer.dart';
 import 'package:online_shop/views/widgets/home_widget.dart';
 import 'package:online_shop/views/widgets/saved_page_widget.dart';
 import 'package:online_shop/views/widgets/search_view_delegate.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -158,7 +159,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
           centerTitle: true,
-          title: const Text("Home Page"),
+          title: Text(AppLocalizations.of(context)!.appHome),
         ),
         body: [
           HomeWidget(
@@ -184,27 +185,27 @@ class _HomePageState extends State<HomePage> {
             setState(() {});
           },
           currentIndex: pageIndex,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.home,
                 ),
-                label: "home"),
+                label: AppLocalizations.of(context)!.appHome),
             BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.cart,
                 ),
-                label: "Cart"),
+                label: AppLocalizations.of(context)!.appCart),
             BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.heart,
                 ),
-                label: "Saved"),
+                label: AppLocalizations.of(context)!.appSaved),
             BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.person,
                 ),
-                label: "Profile"),
+                label: AppLocalizations.of(context)!.appProfile),
           ],
         ),
         floatingActionButton: pageIndex == 0

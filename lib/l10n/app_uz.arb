@@ -1,0 +1,17 @@
+{
+    "helloWorld": "Salom Dunyo!",
+    "apple": "Olma",
+    "hello": "Salom {userName}",
+    "nApples": "{count, plural, =0{olmalar yoq} = 1{1 olma} other {{count} olmalar}}",
+    "appHome": "Bosh sahifa",
+    "appCart": "Savat",
+    "appSaved": "Saqlangan",
+    "appProfile": "Profil",
+    "settings": "Sozlamalar",
+    "mode": "{mode} rejim",
+    "nightMode": "Tungi holat",
+    "lightMode": "Tongi holat",
+    "savedempty": "Saqlanganlar bo'sh",
+    "cartempty": "Savatcha bo'sh",
+    "language": "Tilni tanlash"
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/views/screens/home_page.dart';
 import 'package:online_shop/views/screens/settings_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -23,7 +24,7 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text("Home Page"),
+              child: Text(AppLocalizations.of(context)!.appHome),
             ),
             TextButton(
               onPressed: () {
@@ -33,7 +34,7 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text("Settings"),
+              child: Text(AppLocalizations.of(context)!.settings ),
             ),
           ],
         ),
